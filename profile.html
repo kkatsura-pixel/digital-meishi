@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>SIGNATURE CARD</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Noto+Sans+JP:wght@200;300&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#070707;--bg2:#0e0e0e;--bg3:#151515;
+  --gold:#B8915A;--gold2:#D4B070;
+  --white:#EDE8E0;--gray:#9a9a94;--gray2:#6a6a64;
+  --line:rgba(184,145,90,0.15);--line2:rgba(255,255,255,0.05);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Noto Sans JP',sans-serif;font-weight:200;background:var(--bg);color:var(--white);min-height:100vh;-webkit-font-smoothing:antialiased;}
+
+/* Header */
+.hdr{display:flex;align-items:center;justify-content:space-between;padding:14px 22px;border-bottom:1px solid var(--line2);position:sticky;top:0;z-index:100;background:rgba(7,7,7,0.97);backdrop-filter:blur(12px);}
+.hdr-l{display:flex;align-items:center;gap:11px;}
+.emblem{width:22px;height:22px;border:1px solid var(--gold);overflow:hidden;display:flex;align-items:center;justify-content:center;}
+.emblem img{width:100%;height:100%;object-fit:cover;display:block;}
+.brand{font-family:'Cormorant Garamond',serif;font-size:13px;letter-spacing:.22em;color:var(--white);font-weight:300;}
+.brand-sub{font-size:5.5px;letter-spacing:.18em;color:var(--gray);display:block;margin-top:2px;text-transform:uppercase;}
+.share-btn{width:30px;height:30px;border:1px solid rgba(184,145,90,0.25);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gold);cursor:pointer;background:transparent;}
+
+/* Cover */
+.cover{width:100%;height:168px;background:#0f0d09;position:relative;overflow:hidden;}
+.cover img{width:100%;height:100%;object-fit:cover;display:block;}
+.cover-placeholder{width:100%;height:100%;background:linear-gradient(160deg,#141008 0%,#1e170b 40%,#0c0a06 100%);}
+.cover-line{position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent 0%,var(--gold) 20%,var(--gold2) 55%,transparent 100%);}
+
+/* Photo */
+.photo-wrap{display:flex;justify-content:center;margin-top:-38px;margin-bottom:28px;position:relative;z-index:10;}
+.photo{width:76px;height:76px;border-radius:50%;border:1.5px solid var(--gold);background:var(--bg2);overflow:hidden;display:flex;align-items:center;justify-content:center;}
+.photo img{width:100%;height:100%;object-fit:cover;}
+.photo-ph{font-family:'Cormorant Garamond',serif;font-size:28px;color:var(--gold);font-weight:300;}
+
+/* Identity */
+.identity{text-align:center;padding:0 32px 32px;}
+.name-en{font-size:7px;letter-spacing:.28em;color:var(--gray2);text-transform:uppercase;margin-bottom:16px;}
+.tag-row{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:20px;}
+.tag{border:1px solid rgba(184,145,90,0.35);padding:4px 12px;font-size:6.5px;letter-spacing:.18em;color:var(--gold);text-transform:uppercase;}
+.tag-sep{color:var(--gray2);font-size:9px;}
+.tag-txt{font-size:7.5px;color:var(--gray);letter-spacing:.06em;}
+.co-logo-wrap{display:flex;justify-content:center;margin-bottom:16px;}
+.co-logo{width:48px;height:48px;border-radius:5px;background:var(--bg3);border:1px solid rgba(184,145,90,0.2);overflow:hidden;display:flex;align-items:center;justify-content:center;}
+.co-logo img{width:100%;height:100%;object-fit:contain;}
+.co-logo-ph{font-family:'Cormorant Garamond',serif;font-size:16px;color:rgba(184,145,90,0.3);}
+.co-role{font-size:8.5px;color:var(--gray);letter-spacing:.08em;margin-bottom:8px;}
+.name-ja{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:300;letter-spacing:.08em;color:var(--white);margin-bottom:6px;}
+.name-ro{font-size:8px;color:var(--gray2);letter-spacing:.16em;margin-bottom:14px;text-transform:uppercase;}
+.catch{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13px;color:var(--gold);letter-spacing:.04em;line-height:1.8;}
+
+/* Icon row */
+.icon-row{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line2);border-bottom:1px solid var(--line2);}
+.ico-item{display:flex;flex-direction:column;align-items:center;padding:20px 8px;gap:8px;border-right:1px solid var(--line2);cursor:pointer;text-decoration:none;}
+.ico-item:last-child{border-right:none;}
+.ico-c{width:40px;height:40px;border-radius:50%;background:var(--bg2);border:1px solid rgba(184,145,90,0.2);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:18px;}
+.ico-lbl{font-size:6.5px;letter-spacing:.12em;color:var(--gray2);text-transform:uppercase;}
+
+/* Sections */
+.sec{padding:32px 22px 0;}
+.sec-ttl{font-size:6.5px;letter-spacing:.3em;color:var(--gold);text-transform:uppercase;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid rgba(184,145,90,0.1);}
+.divider{height:1px;background:var(--line2);margin:32px 22px 0;}
+
+/* Contact 3-col grid */
+.ct-list{display:flex;flex-direction:column;gap:24px;}
+.ct-item{display:grid;grid-template-columns:48px 52px 1fr;align-items:center;}
+.ct-ico{width:44px;height:44px;border-radius:50%;background:var(--bg2);border:1px solid rgba(184,145,90,0.2);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:18px;}
+.ct-lbl{font-size:6.5px;letter-spacing:.22em;color:var(--gray);text-transform:uppercase;padding-left:10px;}
+.ct-val{font-size:12px;color:var(--white);letter-spacing:.03em;line-height:1.7;padding-left:10px;}
+.ct-val a{color:var(--white);text-decoration:none;}
+
+/* About */
+.about-txt{font-size:11.5px;color:var(--gray);line-height:2.2;letter-spacing:.04em;white-space:pre-wrap;}
+
+/* SNS pills */
+.pills{display:flex;flex-wrap:wrap;gap:9px;}
+.pill{border:1px solid rgba(184,145,90,0.3);padding:7px 16px;border-radius:50px;font-size:9px;letter-spacing:.1em;color:var(--gold);text-decoration:none;cursor:pointer;}
+
+/* Action */
+.act-list{display:flex;flex-direction:column;}
+.act-item{display:flex;align-items:center;gap:14px;padding:17px 0;border-bottom:1px solid var(--line2);text-decoration:none;color:var(--white);}
+.act-item:last-child{border-bottom:none;}
+.act-ico{width:34px;height:34px;border-radius:50%;background:var(--bg2);border:1px solid rgba(184,145,90,0.2);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:15px;flex-shrink:0;}
+.act-lbl{font-size:11.5px;color:var(--white);letter-spacing:.04em;flex:1;}
+.act-arr{color:var(--gray2);font-size:14px;}
+
+/* Buttons */
+.btn-gold{width:100%;padding:17px;border:1px solid var(--gold);background:transparent;color:var(--gold);font-family:'Cormorant Garamond',serif;font-size:14px;letter-spacing:.28em;text-align:center;border-radius:3px;margin-bottom:10px;cursor:pointer;}
+.btn-ghost{width:100%;padding:15px;border:1px solid var(--line2);background:transparent;color:var(--gray2);font-size:9px;letter-spacing:.2em;text-align:center;border-radius:3px;cursor:pointer;}
+.btn-wrap{padding:32px 22px 40px;}
+
+/* Footer nav */
+.footnav{display:flex;justify-content:space-around;padding:14px 0 24px;border-top:1px solid var(--line2);}
+.fn-item{display:flex;flex-direction:column;align-items:center;gap:5px;}
+.fn-ico{font-size:18px;color:var(--gray2);}
+.fn-ico.on{color:var(--gold);}
+.fn-lbl{font-size:6px;letter-spacing:.12em;color:var(--gray2);text-transform:uppercase;}
+.fn-lbl.on{color:var(--gold);}
+
+/* Loading */
+.loading{display:flex;align-items:center;justify-content:center;min-height:60vh;font-size:10px;letter-spacing:.2em;color:var(--gray2);}
+</style>
+</head>
+<body>
+
+<header class="hdr">
+  <div class="hdr-l">
+    <div class="emblem"><img src="https://kkatsura-pixel.github.io/digital-meishi/SC_logo.png" alt="SC"></div>
+    <div>
+      <span class="brand">SIGNATURE CARD</span>
+      <span class="brand-sub">Executive Digital Meishi Service</span>
+    </div>
+  </div>
+  <button class="share-btn" onclick="shareProfile()" aria-label="共有">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+  </button>
+</header>
+
+<div id="profileContent" class="loading">Loading...</div>
+
+<script>
+const WORKER_URL = 'https://loop-gemini-proxy.koshiro-katsura.workers.dev';
+const R2_BASE = 'https://pub-e7107b07ac27443886e67099825a5322.r2.dev';
+
+const params = new URLSearchParams(location.search);
+const uid = params.get('id');
+
+let profileData = null;
+
+async function loadProfile() {
+  if(!uid) { document.getElementById('profileContent').innerHTML = '<div class="loading">IDが指定されていません</div>'; return; }
+  try {
+    const res = await fetch(`${WORKER_URL}/profile?id=${uid}`);
+    if(!res.ok) throw new Error('not found');
+    const json = await res.json();
+    if(!json || !json.name) throw new Error('not found');
+    profileData = json;
+    renderProfile(json);
+  } catch(e) {
+    document.getElementById('profileContent').innerHTML = '<div class="loading">プロフィールが見つかりません</div>';
+  }
+}
+
+function renderProfile(d) {
+  const coverHtml = d.coverUrl
+    ? `<img src="${d.coverUrl}" alt="cover">`
+    : `<div class="cover-placeholder"></div>`;
+
+  const photoHtml = d.photoUrl
+    ? `<img src="${d.photoUrl}" alt="photo">`
+    : `<div class="photo-ph">${(d.name||'').charAt(0)}</div>`;
+
+  const logoHtml = d.logoUrl
+    ? `<img src="${d.logoUrl}" alt="logo">`
+    : `<div class="co-logo-ph">${(d.company||'').charAt(0)}</div>`;
+
+  const tagHtml = d.catchcopy
+    ? `<div class="tag-row"><div class="tag">${d.company||''}</div><span class="tag-sep">·</span><span class="tag-txt">${d.catchcopy}</span></div>`
+    : `<div class="tag-row"><div class="tag">${d.company||''}</div></div>`;
+
+  const roleStr = [d.company, [d.dept, d.title].filter(Boolean).join(' ')].filter(Boolean).join('　');
+
+  let contactHtml = '';
+  if(d.phone) contactHtml += `<div class="ct-item"><div class="ct-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 01.22 2.18 2 2 0 012.18 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.29 6.29l1.28-1.28a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div><div class="ct-lbl">TEL</div><div class="ct-val"><a href="tel:${d.phone}">${d.phone}</a></div></div>`;
+  if(d.email) contactHtml += `<div class="ct-item"><div class="ct-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div class="ct-lbl">MAIL</div><div class="ct-val"><a href="mailto:${d.email}">${d.email}</a></div></div>`;
+  if(d.address) contactHtml += `<div class="ct-item"><div class="ct-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div class="ct-lbl">住所</div><div class="ct-val">${d.address}</div></div>`;
+
+  let iconRowHtml = '';
+  if(d.phone) iconRowHtml += `<a class="ico-item" href="tel:${d.phone}"><div class="ico-c"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 01.22 2.18 2 2 0 012.18 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.29 6.29l1.28-1.28a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div><div class="ico-lbl">Phone</div></a>`;
+  if(d.email) iconRowHtml += `<a class="ico-item" href="mailto:${d.email}"><div class="ico-c"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div class="ico-lbl">Email</div></a>`;
+  if(d.line) iconRowHtml += `<a class="ico-item" href="https://line.me/ti/p/${d.line}"><div class="ico-c"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div><div class="ico-lbl">LINE</div></a>`;
+  if(d.links && d.links.length) iconRowHtml += `<a class="ico-item" href="${d.links[0].url}" target="_blank"><div class="ico-c"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg></div><div class="ico-lbl">Web</div></a>`;
+
+  let snsHtml = '';
+  if(d.instagram) snsHtml += `<a class="pill" href="https://instagram.com/${d.instagram.replace('@','')}" target="_blank">Instagram</a>`;
+  if(d.twitter) snsHtml += `<a class="pill" href="https://twitter.com/${d.twitter.replace('@','')}" target="_blank">X</a>`;
+  if(d.facebook) snsHtml += `<a class="pill" href="${d.facebook}" target="_blank">Facebook</a>`;
+  if(d.linkedin) snsHtml += `<a class="pill" href="${d.linkedin}" target="_blank">LinkedIn</a>`;
+  if(d.links) d.links.forEach(l => { if(l.url) snsHtml += `<a class="pill" href="${l.url}" target="_blank">HP</a>`; });
+
+  let ctaHtml = '';
+  const ctaIcons = {line:'<path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>',booking:'<rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>',hp:'<circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/>',seminar:'<path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/>',contact:'<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>',other:'<path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/>'};
+  const ctaLabels = {line:'LINE相談',booking:'予約する',hp:'HPを見る',seminar:'セミナー申込',contact:'お問い合わせ',other:'リンク'};
+  if(d.cta) d.cta.forEach(c => {
+    const icon = ctaIcons[c.type]||ctaIcons.other;
+    const label = ctaLabels[c.type]||c.type;
+    ctaHtml += `<a class="act-item" href="${c.url}" target="_blank"><div class="act-ico"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">${icon}</svg></div><div class="act-lbl">${label}</div><span class="act-arr">›</span></a>`;
+  });
+
+  const aboutHtml = d.freeText ? `<div class="divider"></div><div class="sec"><div class="sec-ttl">About</div><div class="about-txt">${d.freeText.replace(/\n/g,'<br>')}</div></div>` : '';
+  const snsSecHtml = snsHtml ? `<div class="divider"></div><div class="sec"><div class="sec-ttl">SNS &amp; Links</div><div class="pills">${snsHtml}</div></div>` : '';
+  const ctaSecHtml = ctaHtml ? `<div class="divider"></div><div class="sec"><div class="sec-ttl">Action</div><div class="act-list">${ctaHtml}</div></div>` : '';
+  const contactSecHtml = contactHtml ? `<div class="divider"></div><div class="sec"><div class="sec-ttl">Contact</div><div class="ct-list">${contactHtml}</div></div>` : '';
+  const iconRowSecHtml = iconRowHtml ? `<div class="icon-row">${iconRowHtml}</div>` : '';
+
+  document.getElementById('profileContent').innerHTML = `
+    <div class="cover">${coverHtml}<div class="cover-line"></div></div>
+    <div class="photo-wrap"><div class="photo">${photoHtml}</div></div>
+    <div class="identity">
+      <div class="name-en">${(d.nameKana||d.name||'').toUpperCase()}</div>
+      ${tagHtml}
+      <div class="co-logo-wrap"><div class="co-logo">${logoHtml}</div></div>
+      <div class="co-role">${roleStr}</div>
+      <div class="name-ja">${d.name||''}</div>
+      ${d.nameKana ? `<div class="name-ro">${d.nameKana}</div>` : ''}
+      ${d.catchcopy ? `<div class="catch">${d.catchcopy}</div>` : ''}
+    </div>
+    ${iconRowSecHtml}
+    ${contactSecHtml}
+    ${aboutHtml}
+    ${snsSecHtml}
+    ${ctaSecHtml}
+    <div class="btn-wrap">
+      <button class="btn-gold" onclick="saveVCard()">連 絡 先 に 保 存 す る</button>
+      <button class="btn-ghost" onclick="shareProfile()">URL を コ ピ ー し て 共 有</button>
+    </div>
+    <nav class="footnav">
+      <div class="fn-item"><svg class="fn-ico on" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><div class="fn-lbl on">Profile</div></div>
+      <div class="fn-item"><svg class="fn-ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg><div class="fn-lbl">Card</div></div>
+      <div class="fn-item"><svg class="fn-ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg><div class="fn-lbl">Scan</div></div>
+      <div class="fn-item"><svg class="fn-ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg><div class="fn-lbl">Contacts</div></div>
+      <div class="fn-item"><svg class="fn-ico" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14"/></svg><div class="fn-lbl">Settings</div></div>
+    </nav>
+  `;
+}
+
+function saveVCard() {
+  if(!profileData) return;
+  const d = profileData;
+  const vcard = [
+    'BEGIN:VCARD','VERSION:3.0',
+    `FN:${d.name}`,
+    d.nameKana ? `SOUND;X-IRMC-N:${d.nameKana}` : '',
+    `ORG:${d.company}${d.dept?';'+d.dept:''}`,
+    d.title ? `TITLE:${d.title}` : '',
+    d.phone ? `TEL;TYPE=WORK,VOICE:${d.phone}` : '',
+    d.email ? `EMAIL;TYPE=WORK:${d.email}` : '',
+    d.address ? `ADR;TYPE=WORK:;;${d.address};;;;` : '',
+    ...(d.links||[]).filter(l=>l.url).map(l=>`URL:${l.url}`),
+    d.freeText ? `NOTE:${d.freeText}` : '',
+    `URL:${location.href}`,
+    'END:VCARD'
+  ].filter(Boolean).join('\r\n');
+  const blob = new Blob([vcard], {type:'text/vcard'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `${d.name.replace(/\s/g,'_')}.vcf`;
+  a.click();
+}
+
+function shareProfile() {
+  const url = location.href;
+  if(navigator.share) {
+    navigator.share({title: profileData ? `${profileData.name}の名刺` : 'SIGNATURE CARD', url});
+  } else {
+    navigator.clipboard.writeText(url).then(() => alert('URLをコピーしました'));
+  }
+}
+
+loadProfile();
+</script>
+</body>
+</html>
