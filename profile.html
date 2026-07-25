@@ -179,12 +179,17 @@ function renderProfile(d) {
 
   // アイコン行
   let iconRow = '';
-  if(d.phone) iconRow += `<a class="ico-item" href="tel:${d.phone}"><div class="ico-c"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 01.22 2.18 2 2 0 012.18 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.29 6.29l1.28-1.28a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div><div class="ico-lbl">Phone</div></a>`;
-  if(d.email) iconRow += `<a class="ico-item" href="mailto:${d.email}"><div class="ico-c"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div class="ico-lbl">Email</div></a>`;
-  if(d.line) iconRow += `<a class="ico-item" href="https://line.me/ti/p/~${d.line}"><div class="ico-c"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div><div class="ico-lbl">LINE</div></a>`;
+  // 基本4つ: Phone・Email・Web・LINE。不足時は住所→SNSで補完
   const firstLink = d.links && d.links.find(l=>l.url);
-  if(firstLink) iconRow += `<a class="ico-item" href="${firstLink.url}" target="_blank"><div class="ico-c"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg></div><div class="ico-lbl">Web</div></a>`;
-  else if(d.address) iconRow += `<a class="ico-item" href="https://maps.google.com/?q=${encodeURIComponent(d.address)}" target="_blank"><div class="ico-c"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div class="ico-lbl">Map</div></a>`;
+  const basicIcons = [];
+  if(d.phone) basicIcons.push(`<a class="ico-item" href="tel:${d.phone}"><div class="ico-c"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 10.8 19.79 19.79 0 01.22 2.18 2 2 0 012.18 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.29 6.29l1.28-1.28a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg></div><div class="ico-lbl">Phone</div></a>`);
+  if(d.email) basicIcons.push(`<a class="ico-item" href="mailto:${d.email}"><div class="ico-c"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div class="ico-lbl">Email</div></a>`);
+  if(firstLink) basicIcons.push(`<a class="ico-item" href="${firstLink.url}" target="_blank"><div class="ico-c"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg></div><div class="ico-lbl">Web</div></a>`);
+  if(d.line) basicIcons.push(`<a class="ico-item" href="https://line.me/ti/p/~${d.line}"><div class="ico-c"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div><div class="ico-lbl">LINE</div></a>`);
+  // 4つに満たない場合は住所→SNSで補完
+  if(basicIcons.length < 4 && d.address) basicIcons.push(`<a class="ico-item" href="https://maps.google.com/?q=${encodeURIComponent(d.address)}" target="_blank"><div class="ico-c"><svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div class="ico-lbl">Map</div></a>`);
+  if(basicIcons.length < 4 && d.instagram) basicIcons.push(`<a class="ico-item" href="https://instagram.com/${d.instagram.replace('@','')}" target="_blank"><div class="ico-c"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></div><div class="ico-lbl">Instagram</div></a>`);
+  iconRow = basicIcons.join('');
 
   // Contact
   const contacts = [];
@@ -265,12 +270,12 @@ async function initGoogleMap(address) {
   try {
     const res = await fetch(`${WORKER_URL}/maps?address=${encodeURIComponent(address)}`);
     const data = await res.json();
-    if(data.status !== 'OK' || !data.results[0]) return;
-    const loc = data.results[0].geometry.location;
+    if(!data.embedUrl) return;
     const iframe = document.createElement('iframe');
     iframe.style.cssText = 'width:100%;height:100%;border:0;';
     iframe.loading = 'lazy';
-    iframe.src = `https://www.google.com/maps?q=${loc.lat},${loc.lng}&z=16&output=embed`;
+    iframe.allowFullscreen = true;
+    iframe.src = data.embedUrl;
     mapEl.appendChild(iframe);
   } catch(e) {
     console.error('Map error:', e);
