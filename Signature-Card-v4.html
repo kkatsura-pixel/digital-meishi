@@ -3058,7 +3058,7 @@ footer{text-align:center;padding:24px;font-size:9px;color:var(--gray2);letter-sp
       <span class="hsub">Executive Digital Meishi Service</span>
     </div>
   </div>
-  <div class="hstep" id="headerStep">01 / 04</div>
+  <div class="hstep" id="headerStep"></div>
 </header>
 
 <!-- ライブプレビュー -->
@@ -3549,7 +3549,7 @@ async function submitCard() {
 function renderResult() {
   document.getElementById('formSection').style.display = 'none';
   document.getElementById('previewStrip').style.display = 'none';
-  document.getElementById('headerStep').textContent = 'Complete';
+  
   const panel = document.getElementById('resultPanel');
   panel.style.display = 'block';
   panel.scrollIntoView({behavior:'smooth'});
@@ -3712,7 +3712,7 @@ function editCard() {
   document.getElementById('resultPanel').style.display = 'none';
   document.getElementById('formSection').style.display = 'block';
   document.getElementById('previewStrip').style.display = 'block';
-  document.getElementById('headerStep').textContent = 'Step 01';
+  
   window.scrollTo({top:0, behavior:'smooth'});
 }
 
