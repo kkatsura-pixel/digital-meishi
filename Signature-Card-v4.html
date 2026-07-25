@@ -3208,6 +3208,10 @@ footer{text-align:center;padding:24px;font-size:9px;color:var(--gray2);letter-sp
         <div class="sns-row"><div class="sns-ico"><svg class="xs" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></div><input type="text" id="facebook" placeholder="facebook.com/name" maxlength="100" oninput="liveUpdate()"></div></div>
       <div class="field"><div class="fl">LinkedIn</div>
         <div class="sns-row"><div class="sns-ico" style="font-family:sans-serif;font-size:9px;color:var(--gold);font-weight:400;letter-spacing:0;">in</div><input type="text" id="linkedin" placeholder="linkedin.com/in/name" maxlength="100" oninput="liveUpdate()"></div></div>
+        <div class="fl" style="margin-top:10px;">TikTok</div>
+        <div class="sns-row"><div class="sns-ico" style="font-family:sans-serif;font-size:9px;color:var(--gold);font-weight:500;">TT</div><input type="text" id="tiktok" placeholder="@username" maxlength="50" oninput="liveUpdate()"></div></div>
+        <div class="fl" style="margin-top:10px;">YouTube</div>
+        <div class="sns-row"><div class="sns-ico"><svg class="xs" viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.96A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="var(--bg)"/></svg></div><input type="text" id="youtube" placeholder="youtube.com/@channel" maxlength="100" oninput="liveUpdate()"></div></div>
     </div>
   </div>
 </div>
@@ -3372,12 +3376,15 @@ setupUpload('coverInput','coverUpload', function(src) {
 // CTA追加
 // ══════════════════════════
 const CTA_TYPES = [
-  {val:'line',    label:'💬 LINE相談'},
-  {val:'booking', label:'📅 予約する'},
-  {val:'hp',      label:'🌐 HPを見る'},
-  {val:'seminar', label:'🎓 セミナー申込'},
-  {val:'contact', label:'✉️ お問い合わせ'},
-  {val:'other',   label:'🔗 その他'}
+  {val:'line',      label:'LINE相談'},
+  {val:'booking',   label:'予約する'},
+  {val:'hp',        label:'HPを見る'},
+  {val:'instagram', label:'Instagramをフォロー'},
+  {val:'seminar',   label:'セミナー申込'},
+  {val:'contact',   label:'お問い合わせ'},
+  {val:'newsletter',label:'メルマガ登録'},
+  {val:'youtube',   label:'YouTubeを見る'},
+  {val:'other',     label:'その他リンク'}
 ];
 
 function addCTA() {
@@ -3471,7 +3478,7 @@ async function submitCard() {
     phone: v('phone'), fax: v('fax'), email: v('email'),
     links: linkItems.filter(l=>l.url),
     line: v('line'), instagram: v('instagram'), facebook: v('facebook'),
-    twitter: v('twitter'), linkedin: v('linkedin'),
+    twitter: v('twitter'), linkedin: v('linkedin'), tiktok: v('tiktok'), youtube: v('youtube'),
     freeText: v('freeText'),
     cta: ctaItems.filter(c=>c.url),
     logo: logoDataUrl, photo: photoDataUrl, cover: coverDataUrl,

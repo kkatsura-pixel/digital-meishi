@@ -9,7 +9,7 @@
 :root{
   --bg:#070707;--bg2:#0e0e0e;--bg3:#151515;
   --gold:#B8915A;--gold2:#D4B070;
-  --white:#EDE8E0;--gray:#9a9a94;--gray2:#6a6a64;
+  --white:#EDE8E0;--gray:#b8b8b2;--gray2:#8a8a84;
   --line:rgba(184,145,90,0.15);--line2:rgba(255,255,255,0.05);
 }
 *{box-sizing:border-box;margin:0;padding:0;}
@@ -81,8 +81,11 @@ body{font-family:'Noto Sans JP',sans-serif;font-weight:200;background:var(--bg);
 .free-text{font-size:11.5px;color:var(--gray);line-height:2.2;letter-spacing:.04em;white-space:pre-wrap;word-break:break-word;}
 
 /* SNS pills */
-.sns-area{display:flex;flex-wrap:wrap;gap:9px;}
-.sns-tag{border:1px solid rgba(184,145,90,0.3);padding:7px 16px;border-radius:50px;font-size:9px;letter-spacing:.1em;color:var(--gold);text-decoration:none;}
+.sns-area{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;}
+.sns-tag{display:flex;flex-direction:column;align-items:center;gap:5px;text-decoration:none;width:52px;}
+.sns-tag-ico{width:44px;height:44px;border-radius:50%;background:var(--bg2);border:1px solid rgba(184,145,90,0.25);display:flex;align-items:center;justify-content:center;color:var(--gold);}
+.sns-tag-ico svg{width:18px;height:18px;stroke:var(--gold);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;}
+.sns-tag-lbl{font-size:7px;letter-spacing:.08em;color:var(--gray);text-transform:uppercase;}
 
 /* CTA */
 .cta-area{display:flex;flex-direction:column;gap:0;}
@@ -159,7 +162,9 @@ function renderProfile(d) {
 
   const CTA_LABELS = {
     line:'LINE相談', booking:'予約する', hp:'HPを見る',
-    seminar:'セミナー申込', contact:'お問い合わせ', other:'リンク'
+    instagram:'Instagramをフォロー', seminar:'セミナー申込',
+    contact:'お問い合わせ', newsletter:'メルマガ登録',
+    youtube:'YouTubeを見る', other:'その他リンク'
   };
   const LINK_LABELS = {
     hp:'HP', lp:'LP', shop:'Shop', blog:'Blog', portfolio:'Portfolio', other:'Link'
@@ -204,13 +209,24 @@ function renderProfile(d) {
   let contactHtml = contacts.map(c=>`<div class="contact-item"><div class="ci-ico"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#B8915A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">${c.ico}</svg></div><div class="ci-label">${c.label}</div><div class="ci-value">${c.value}</div></div>`).join('');
 
   // SNS
+  const SNS_ICONS = {
+    line: `<svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>`,
+    instagram: `<svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>`,
+    x: `<svg viewBox="0 0 24 24"><path d="M4 4l16 16M4 20L20 4" stroke-width="2"/></svg>`,
+    facebook: `<svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>`,
+    linkedin: `<svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>`,
+    tiktok: `<svg viewBox="0 0 24 24"><path d="M9 12a4 4 0 104 4V4a5 5 0 005 5"/></svg>`,
+    youtube: `<svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.96A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="#B8915A" stroke="none"/></svg>`,
+  };
   const sns = [];
-  if(d.line) sns.push({label:'LINE',url:`https://line.me/ti/p/~${d.line}`});
-  if(d.instagram) sns.push({label:'Instagram',url:`https://instagram.com/${d.instagram.replace('@','')}`});
-  if(d.twitter) sns.push({label:'X',url:`https://x.com/${d.twitter.replace('@','')}`});
-  if(d.facebook) sns.push({label:'Facebook',url:d.facebook.startsWith('http')?d.facebook:`https://${d.facebook}`});
-  if(d.linkedin) sns.push({label:'LinkedIn',url:d.linkedin.startsWith('http')?d.linkedin:`https://${d.linkedin}`});
-  let snsHtml = sns.map(s=>`<a href="${s.url}" class="sns-tag" target="_blank">${s.label}</a>`).join('');
+  if(d.line) sns.push({key:'line',label:'LINE',url:`https://line.me/ti/p/~${d.line}`});
+  if(d.instagram) sns.push({key:'instagram',label:'Instagram',url:`https://instagram.com/${d.instagram.replace('@','')}`});
+  if(d.twitter) sns.push({key:'x',label:'X',url:`https://x.com/${d.twitter.replace('@','')}`});
+  if(d.facebook) sns.push({key:'facebook',label:'Facebook',url:d.facebook.startsWith('http')?d.facebook:`https://${d.facebook}`});
+  if(d.linkedin) sns.push({key:'linkedin',label:'LinkedIn',url:d.linkedin.startsWith('http')?d.linkedin:`https://${d.linkedin}`});
+  if(d.tiktok) sns.push({key:'tiktok',label:'TikTok',url:`https://tiktok.com/@${d.tiktok.replace('@','')}`});
+  if(d.youtube) sns.push({key:'youtube',label:'YouTube',url:d.youtube.startsWith('http')?d.youtube:`https://${d.youtube}`});
+  let snsHtml = sns.map(s=>`<a href="${s.url}" class="sns-tag" target="_blank"><div class="sns-tag-ico">${SNS_ICONS[s.key]||SNS_ICONS.line}</div><div class="sns-tag-lbl">${s.label}</div></a>`).join('');
 
   // CTA
   let ctaHtml = '';
@@ -233,7 +249,7 @@ function renderProfile(d) {
     </div>
     ${iconRow?`<div class="icon-row">${iconRow}</div>`:''}
     ${contactHtml?`<div class="sec-divider"></div><div class="section"><div class="sec-title">Contact</div><div class="contact-list">${contactHtml}</div></div>`:''}
-    ${d.freeText?`<div class="sec-divider"></div><div class="section"><div class="sec-title">About</div><div class="free-text">${d.freeText.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")}</div></div>`:''}
+    ${d.freeText?`<div class="sec-divider"></div><div class="section"><div class="sec-title">About</div><div class="free-text">${renderMarkdown(d.freeText)}</div></div>`:''}
     ${snsHtml?`<div class="sec-divider"></div><div class="section"><div class="sec-title">SNS &amp; Links</div><div class="sns-area">${snsHtml}</div></div>`:''}
     ${ctaHtml?`<div class="sec-divider"></div><div class="section"><div class="sec-title">Action</div><div class="cta-area">${ctaHtml}</div></div>`:''}
     ${d.address?`<div class="sec-divider"></div><div class="section"><div class="sec-title">Location</div><div id="google-map" style="width:100%;height:200px;border-radius:5px;border:1px solid rgba(184,145,90,0.12);margin-bottom:24px;overflow:hidden;"></div></div>`:''}
@@ -262,6 +278,17 @@ function renderProfile(d) {
   if(d.address) {
     initGoogleMap(d.address);
   }
+}
+
+function renderMarkdown(text) {
+  return text
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')
+    .replace(/\*(.+?)\*/g,'<em>$1</em>')
+    .replace(/^・(.+)$/gm,'<li>$1</li>')
+    .replace(/^[-•](.+)$/gm,'<li>$1</li>')
+    .replace(/(<li>.*<\/li>)/gs,'<ul style="padding-left:1.2em;margin:4px 0;">$1</ul>')
+    .replace(/\n/g,'<br>');
 }
 
 async function initGoogleMap(address) {
