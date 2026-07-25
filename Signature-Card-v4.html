@@ -3138,6 +3138,27 @@ footer{text-align:center;padding:24px;font-size:9px;color:var(--gray2);letter-sp
         <div class="field"><div class="fl">部署</div><input type="text" id="dept" placeholder="Founder CEO" maxlength="40" oninput="liveUpdate()"></div>
       </div>
       <div class="field"><div class="fl">Catchcopy</div><input type="text" id="catchcopy" class="catchcopy-field" placeholder="Executive Support" maxlength="60" oninput="liveUpdate()"></div>
+      <div class="fg two">
+        <div class="field"><div class="fl">業界</div>
+          <select id="industry" onchange="liveUpdate()" style="width:100%;background:transparent;border:none;border-bottom:1px solid var(--line2);padding:9px 0;font-size:13px;color:var(--white);font-family:'Noto Sans JP',sans-serif;font-weight:200;outline:none;-webkit-appearance:none;border-radius:0;">
+            <option value="" style="background:#0e0e0e;">選択してください</option>
+            <option value="フィットネス・ウェルネス" style="background:#0e0e0e;">フィットネス・ウェルネス</option>
+            <option value="美容・エステ" style="background:#0e0e0e;">美容・エステ</option>
+            <option value="医療・健康" style="background:#0e0e0e;">医療・健康</option>
+            <option value="飲食・フード" style="background:#0e0e0e;">飲食・フード</option>
+            <option value="ファッション・アパレル" style="background:#0e0e0e;">ファッション・アパレル</option>
+            <option value="不動産・建築" style="background:#0e0e0e;">不動産・建築</option>
+            <option value="IT・テクノロジー" style="background:#0e0e0e;">IT・テクノロジー</option>
+            <option value="金融・保険" style="background:#0e0e0e;">金融・保険</option>
+            <option value="教育・コーチング" style="background:#0e0e0e;">教育・コーチング</option>
+            <option value="コンサルティング" style="background:#0e0e0e;">コンサルティング</option>
+            <option value="クリエイティブ・デザイン" style="background:#0e0e0e;">クリエイティブ・デザイン</option>
+            <option value="エンターテイメント" style="background:#0e0e0e;">エンターテイメント</option>
+            <option value="その他" style="background:#0e0e0e;">その他</option>
+          </select>
+        </div>
+        <div class="field"><div class="fl">業種・職種</div><input type="text" id="jobType" placeholder="パーソナルトレーナー" maxlength="40" oninput="liveUpdate()"></div>
+      </div>
     </div>
   </div>
 </div>
@@ -3474,7 +3495,7 @@ async function submitCard() {
   cardData = {
     company, name,
     nameKana: v('nameKana'), dept: v('dept'), title: v('title'),
-    catchcopy: v('catchcopy'), address: v('address'),
+    catchcopy: v('catchcopy'), industry: v('industry'), jobType: v('jobType'), address: v('address'),
     phone: v('phone'), fax: v('fax'), email: v('email'),
     links: linkItems.filter(l=>l.url),
     line: v('line'), instagram: v('instagram'), facebook: v('facebook'),

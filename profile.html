@@ -249,6 +249,7 @@ function renderProfile(d) {
     </div>
     ${iconRow?`<div class="icon-row">${iconRow}</div>`:''}
     ${contactHtml?`<div class="sec-divider"></div><div class="section"><div class="sec-title">Contact</div><div class="contact-list">${contactHtml}</div></div>`:''}
+    ${(d.industry||d.jobType)?`<div class="sec-divider"></div><div class="section"><div class="sec-title">業界 / 業種</div><div style="display:flex;gap:10px;flex-wrap:wrap;">${d.industry?`<span style="border:1px solid rgba(184,145,90,0.35);padding:5px 14px;border-radius:50px;font-size:10px;letter-spacing:.1em;color:var(--gold);">${d.industry}</span>`:''} ${d.jobType?`<span style="border:1px solid rgba(184,145,90,0.2);padding:5px 14px;border-radius:50px;font-size:10px;letter-spacing:.1em;color:var(--gray);">${d.jobType}</span>`:''}</div></div>`:''}
     ${d.freeText?`<div class="sec-divider"></div><div class="section"><div class="sec-title">About</div><div class="free-text">${renderMarkdown(d.freeText)}</div></div>`:''}
     ${snsHtml?`<div class="sec-divider"></div><div class="section"><div class="sec-title">SNS &amp; Links</div><div class="sns-area">${snsHtml}</div></div>`:''}
     ${ctaHtml?`<div class="sec-divider"></div><div class="section"><div class="sec-title">Action</div><div class="cta-area">${ctaHtml}</div></div>`:''}
