@@ -3030,14 +3030,14 @@ svg.xs{width:11px;height:11px;stroke:var(--gold);fill:none;stroke-width:1.5;stro
 .pv-cover-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
 .pv-cover-bar{position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent 0%,var(--gold) 30%,var(--gold2) 60%,transparent 100%);}
 .pv-body{padding:8px 12px 10px;display:flex;align-items:flex-start;gap:8px;position:relative;}
-.pv-logo{width:52px;height:30px;border-radius:3px;background:var(--bg3);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'Cormorant Garamond',serif;font-size:11px;color:var(--gold);overflow:hidden;}
+.pv-logo{width:44px;height:44px;border-radius:3px;background:var(--bg3);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-family:'Cormorant Garamond',serif;font-size:11px;color:var(--gold);overflow:hidden;}
 .pv-logo img{width:100%;height:100%;object-fit:contain;}
 .pv-info{flex:1;min-width:0;}
 .pv-co{font-size:8px;color:var(--gold);letter-spacing:.06em;margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .pv-name{font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:300;color:var(--white);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .pv-role{font-size:8px;color:var(--gray);margin-top:1px;}
 .pv-catch{font-size:8px;color:var(--gold);font-style:italic;font-family:'Cormorant Garamond',serif;margin-top:2px;}
-.pv-photo{width:26px;height:26px;border-radius:50%;border:1px solid var(--gold);object-fit:cover;position:absolute;top:6px;right:10px;flex-shrink:0;}
+.pv-photo{width:38px;height:38px;border-radius:50%;border:1px solid var(--gold);object-fit:cover;position:absolute;top:6px;right:10px;flex-shrink:0;}
 
 footer{text-align:center;padding:24px;font-size:9px;color:var(--gray2);letter-spacing:.14em;border-top:1px solid var(--line2);}
 </style>
@@ -3052,7 +3052,7 @@ footer{text-align:center;padding:24px;font-size:9px;color:var(--gray2);letter-sp
 <!-- ヘッダー -->
 <header class="app-header">
   <div class="hlogo">
-    <div class="hemblem">S</div>
+    <div class="hemblem"><img src="https://kkatsura-pixel.github.io/digital-meishi/SC_logo.png" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
     <div>
       <span class="hbrand">SIGNATURE CARD</span>
       <span class="hsub">Executive Digital Meishi Service</span>
@@ -3631,13 +3631,20 @@ function saveVCard() {
 // QRダウンロード
 // ══════════════════════════
 function downloadQR() {
-  const svg = document.querySelector('#qrcode svg');
-  if(!svg) { alert('QRコードを先に生成してください'); return; }
-  const blob = new Blob([svg.outerHTML], {type:'image/svg+xml'});
-  const a = document.createElement('a');
-  a.download = `meishi_qr_${cardData.name||'card'}.svg`;
-  a.href = URL.createObjectURL(blob);
-  a.click();
+  const canvas = document.querySelector('#qrcode canvas');
+  if(!canvas) { alert('QRコードを先に生成してください'); return; }
+  canvas.toBlob(async (blob) => {
+    const fileName = `meishi_qr_${cardData.name||'card'}.png`;
+    const file = new File([blob], fileName, {type:'image/png'});
+    if(navigator.canShare && navigator.canShare({ files: [file] })) {
+      try { await navigator.share({ files: [file] }); } catch(e) {}
+    } else {
+      const a = document.createElement('a');
+      a.download = fileName;
+      a.href = URL.createObjectURL(blob);
+      a.click();
+    }
+  }, 'image/png');
 }
 
 // ══════════════════════════
