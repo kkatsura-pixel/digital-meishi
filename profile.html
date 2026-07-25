@@ -292,6 +292,7 @@ function saveContact() {
   const vcard = [
     'BEGIN:VCARD','VERSION:3.0',
     `FN:${d.name}`,
+    `N:${(d.name||'').split(/\s+/)[0]};${(d.name||'').split(/\s+/).slice(1).join(' ')};;;`,
     d.nameKana ? `SOUND;X-IRMC-N:${d.nameKana}` : '',
     `ORG:${d.company}${d.dept?';'+d.dept:''}`,
     d.title   ? `TITLE:${d.title}` : '',
