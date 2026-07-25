@@ -2870,12 +2870,12 @@ body{font-family:'Noto Sans JP',sans-serif;font-weight:200;background:var(--bg);
 }
 .hlogo{display:flex;align-items:center;gap:9px;}
 .hemblem{
-  width:22px;height:22px;border:1px solid var(--gold);
+  width:30px;height:30px;border:1.5px solid var(--gold);
   display:flex;align-items:center;justify-content:center;
-  font-family:'Cormorant Garamond',serif;font-size:11px;color:var(--gold);
+  font-family:'Cormorant Garamond',serif;font-size:14px;color:var(--gold);
 }
-.hbrand{font-family:'Cormorant Garamond',serif;font-size:14px;letter-spacing:.2em;color:var(--white);font-weight:300;}
-.hsub{font-size:6.5px;letter-spacing:.16em;color:var(--gray);display:block;text-transform:uppercase;margin-top:1px;}
+.hbrand{font-family:'Cormorant Garamond',serif;font-size:16px;letter-spacing:.24em;color:var(--white);font-weight:400;}
+.hsub{font-size:6.5px;letter-spacing:.16em;color:var(--gray);display:block;text-transform:uppercase;margin-top:2px;}
 .hstep{font-size:8px;letter-spacing:.16em;color:var(--gray2);text-transform:uppercase;}
 
 /* ── Container ── */
@@ -2883,7 +2883,7 @@ body{font-family:'Noto Sans JP',sans-serif;font-weight:200;background:var(--bg);
 
 /* ── Tagline ── */
 .tagline{padding:18px 0 16px;border-bottom:1px solid var(--line2);margin-bottom:18px;}
-.tl-main{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;color:var(--white);letter-spacing:.03em;line-height:1.35;font-style:italic;}
+.tl-main{font-family:'Cormorant Garamond',serif;font-size:38px;font-weight:400;color:var(--white);letter-spacing:.02em;line-height:1.25;font-style:italic;}
 .tl-gold{color:var(--gold);}
 .tl-sub{font-size:8px;letter-spacing:.28em;color:var(--gold);text-transform:uppercase;margin-top:8px;}
 
@@ -3143,17 +3143,37 @@ footer{text-align:center;padding:24px;font-size:9px;color:var(--gray2);letter-sp
           <select id="industry" onchange="liveUpdate()" style="width:100%;background:transparent;border:none;border-bottom:1px solid var(--line2);padding:9px 0;font-size:13px;color:var(--white);font-family:'Noto Sans JP',sans-serif;font-weight:200;outline:none;-webkit-appearance:none;border-radius:0;">
             <option value="" style="background:#0e0e0e;">選択してください</option>
             <option value="フィットネス・ウェルネス" style="background:#0e0e0e;">フィットネス・ウェルネス</option>
-            <option value="美容・エステ" style="background:#0e0e0e;">美容・エステ</option>
-            <option value="医療・健康" style="background:#0e0e0e;">医療・健康</option>
-            <option value="飲食・フード" style="background:#0e0e0e;">飲食・フード</option>
+            <option value="美容・エステ・ネイル" style="background:#0e0e0e;">美容・エステ・ネイル</option>
+            <option value="医療・歯科・クリニック" style="background:#0e0e0e;">医療・歯科・クリニック</option>
+            <option value="健康・代替医療" style="background:#0e0e0e;">健康・代替医療・整体</option>
+            <option value="法律・弁護士・司法書士" style="background:#0e0e0e;">法律・弁護士・司法書士</option>
+            <option value="税理士・公認会計士" style="background:#0e0e0e;">税理士・公認会計士</option>
+            <option value="社会保険労務士・行政書士" style="background:#0e0e0e;">社会保険労務士・行政書士</option>
+            <option value="その他士業" style="background:#0e0e0e;">その他士業</option>
+            <option value="金融・保険・証券" style="background:#0e0e0e;">金融・保険・証券</option>
+            <option value="不動産・建築・リフォーム" style="background:#0e0e0e;">不動産・建築・リフォーム</option>
+            <option value="IT・Web・システム開発" style="background:#0e0e0e;">IT・Web・システム開発</option>
+            <option value="AI・DX・テクノロジー" style="background:#0e0e0e;">AI・DX・テクノロジー</option>
+            <option value="飲食・フード・カフェ" style="background:#0e0e0e;">飲食・フード・カフェ</option>
             <option value="ファッション・アパレル" style="background:#0e0e0e;">ファッション・アパレル</option>
-            <option value="不動産・建築" style="background:#0e0e0e;">不動産・建築</option>
-            <option value="IT・テクノロジー" style="background:#0e0e0e;">IT・テクノロジー</option>
-            <option value="金融・保険" style="background:#0e0e0e;">金融・保険</option>
-            <option value="教育・コーチング" style="background:#0e0e0e;">教育・コーチング</option>
-            <option value="コンサルティング" style="background:#0e0e0e;">コンサルティング</option>
-            <option value="クリエイティブ・デザイン" style="background:#0e0e0e;">クリエイティブ・デザイン</option>
-            <option value="エンターテイメント" style="background:#0e0e0e;">エンターテイメント</option>
+            <option value="教育・コーチング・講師" style="background:#0e0e0e;">教育・コーチング・講師</option>
+            <option value="コンサルティング・経営支援" style="background:#0e0e0e;">コンサルティング・経営支援</option>
+            <option value="クリエイティブ・デザイン・写真" style="background:#0e0e0e;">クリエイティブ・デザイン・写真</option>
+            <option value="動画・映像・放送" style="background:#0e0e0e;">動画・映像・放送</option>
+            <option value="音楽・アーティスト" style="background:#0e0e0e;">音楽・アーティスト</option>
+            <option value="エンターテイメント・芸能" style="background:#0e0e0e;">エンターテイメント・芸能</option>
+            <option value="スポーツ・アスリート" style="background:#0e0e0e;">スポーツ・アスリート</option>
+            <option value="旅行・観光・ホテル" style="background:#0e0e0e;">旅行・観光・ホテル</option>
+            <option value="小売・EC・物販" style="background:#0e0e0e;">小売・EC・物販</option>
+            <option value="製造・メーカー" style="background:#0e0e0e;">製造・メーカー</option>
+            <option value="農業・食品・一次産業" style="background:#0e0e0e;">農業・食品・一次産業</option>
+            <option value="物流・運輸" style="background:#0e0e0e;">物流・運輸</option>
+            <option value="広告・PR・マーケティング" style="background:#0e0e0e;">広告・PR・マーケティング</option>
+            <option value="人材・採用・HR" style="background:#0e0e0e;">人材・採用・HR</option>
+            <option value="NPO・社会起業・ソーシャルビジネス" style="background:#0e0e0e;">NPO・社会起業・ソーシャルビジネス</option>
+            <option value="宗教・精神・スピリチュアル" style="background:#0e0e0e;">宗教・精神・スピリチュアル</option>
+            <option value="政治・行政・公務" style="background:#0e0e0e;">政治・行政・公務</option>
+            <option value="研究・学術・出版" style="background:#0e0e0e;">研究・学術・出版</option>
             <option value="その他" style="background:#0e0e0e;">その他</option>
           </select>
         </div>
