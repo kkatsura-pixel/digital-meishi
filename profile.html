@@ -104,7 +104,10 @@ body{font-family:'Noto Sans JP',sans-serif;font-weight:200;background:var(--bg);
 /* Buttons */
 .btn-wrap{padding:28px 22px 0;}
 .save-btn{width:100%;padding:16px;border:1px solid var(--gold);background:transparent;color:var(--gold);font-family:'Cormorant Garamond',serif;font-size:16px;letter-spacing:.28em;text-align:center;border-radius:4px;margin-bottom:10px;cursor:pointer;}
-.share-btn{width:100%;padding:14px;border:1px solid var(--line2);background:transparent;color:var(--gray2);font-size:11px;letter-spacing:.2em;text-align:center;border-radius:4px;cursor:pointer;margin-bottom:0;}
+.share-row{display:flex;justify-content:center;gap:28px;padding:16px 0 0;}
+.share-ico{display:flex;flex-direction:column;align-items:center;gap:7px;text-decoration:none;}
+.share-ico-c{width:44px;height:44px;border-radius:50%;background:var(--bg2);border:1px solid rgba(184,145,90,0.25);display:flex;align-items:center;justify-content:center;color:var(--gold);}
+.share-lbl{font-size:10px;letter-spacing:.2em;color:var(--gray);text-transform:uppercase;}
 
 /* Bottom nav */
 .footnav{display:flex;justify-content:space-around;padding:16px 0 28px;border-top:1px solid var(--line2);margin-top:28px;}
@@ -164,7 +167,7 @@ function renderProfile(d) {
     line:'LINE相談', booking:'予約する', hp:'HPを見る',
     instagram:'Instagramをフォロー', seminar:'セミナー申込',
     contact:'お問い合わせ', newsletter:'メルマガ登録',
-    youtube:'YouTubeを見る', other:'その他リンク'
+    youtube:'YouTubeを見る', pdf:'資料(PDF)を見る', other:'その他リンク'
   };
   const LINK_LABELS = {
     hp:'HP', lp:'LP', shop:'Shop', blog:'Blog', portfolio:'Portfolio', other:'Link'
@@ -256,7 +259,12 @@ function renderProfile(d) {
     ${d.address?`<div class="sec-divider"></div><div class="section"><div class="sec-title">Location</div><div id="google-map" style="width:100%;height:200px;border-radius:5px;border:1px solid rgba(184,145,90,0.12);margin-bottom:24px;overflow:hidden;"></div></div>`:''}
     <div class="btn-wrap">
       <button class="save-btn" onclick="saveContact()">連 絡 先 に 保 存 す る</button>
-      <button class="share-btn" onclick="shareProfile()">URL を コ ピ ー し て 共 有</button>
+      <div class="share-row">
+        <a class="share-ico" href="javascript:void(0)" onclick="shareLine()"><div class="share-ico-c"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#B8915A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></div><div class="share-lbl">LINE</div></a>
+        <a class="share-ico" href="javascript:void(0)" onclick="shareSMS()"><div class="share-ico-c"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#B8915A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div><div class="share-lbl">SMS</div></a>
+        <a class="share-ico" href="javascript:void(0)" onclick="shareEmail()"><div class="share-ico-c"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#B8915A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="M22 6l-10 7L2 6"/></svg></div><div class="share-lbl">Email</div></a>
+        <a class="share-ico" href="javascript:void(0)" onclick="shareProfile()"><div class="share-ico-c"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="#B8915A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 10.5l6.8-3.9M8.6 13.5l6.8 3.9"/></svg></div><div class="share-lbl">その他</div></a>
+      </div>
     </div>
     <nav class="footnav">
       <a class="fn-item" href="javascript:void(0)" onclick="showQR()">
@@ -339,6 +347,22 @@ function saveContact() {
   a.href = url;
   a.download = `${d.name.replace(/\s/g,'_')}.vcf`;
   a.click();
+}
+
+function shareLine() {
+  const url = window.location.href;
+  window.open(`https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(url)}`, '_blank');
+}
+
+function shareSMS() {
+  const text = `${window._profileData?.name||''}の名刺: ${window.location.href}`;
+  window.location.href = `sms:?body=${encodeURIComponent(text)}`;
+}
+
+function shareEmail() {
+  const subject = `${window._profileData?.name||''}の名刺`;
+  const body = window.location.href;
+  window.location.href = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
 
 function shareProfile() {
